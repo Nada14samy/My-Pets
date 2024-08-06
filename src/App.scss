@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:opsz,wght@16..144,100..700&display=swap');
+$primary-color: #73B9D7;
+$Dark-color:#000;
+$Light-color:#fff;
+$font-weight-normal: 500;
+$font-family-Roboto: "Roboto", sans-serif;
+$font-family-MontaguSlab: "Montagu Slab", serif;
+$background-color: #FFD79A9C;
+body{
+    font-family: $font-family-Roboto;
+    font-optical-sizing: auto;
+    font-style: normal;
+    overflow-x: hidden;
+}

@@ -1,0 +1,40 @@
+@import "../../App.scss";
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+.navBrand{
+    font-size: 24px;
+    margin-top: 5px;
+    font-weight: $font-weight-normal;
+    letter-spacing: 2px;
+}
+.nav-link{
+    font-weight: $font-weight-normal;
+   font-size: 18px ;
+   color: $Dark-color ;
+}
+.sign-btn{
+    border-radius: 20px;
+    padding-inline: 30px;
+    background: $primary-color;
+    border: none;
+
+    a{
+        text-decoration: none;
+    }
+}
+@media only screen and (max-width:991px){
+    .navbar{
+        position: fixed;
+        z-index: 999;
+        top:0;
+        left:0;
+        right:0;
+    }
+    #navbarScroll{
+        background-color: #0000001c;
+    }
+}
