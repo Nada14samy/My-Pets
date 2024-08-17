@@ -1,0 +1,55 @@
+@import "../../App.css";
+*{
+    box-sizing: border-box;
+}
+footer{
+    background: var(--background-color);
+    height: 50vh;
+}
+
+.foot-text{ 
+    width: 180px;
+}
+
+.foot-title{
+    font-size: 32px;
+    margin-bottom: 25px;
+}
+.links .foot-items .foot-item {
+    
+    padding-bottom: 5px;
+}
+.links .foot-items .foot-item .foot-link{
+    font-weight: 400;
+}
+.links .foot-items .foot-item .foot-link:hover{
+    color: var(--primary-color);
+}
+.links{
+    padding-bottom: 10px;
+}
+.socialLinks{
+    padding-top: 20px
+}
+.social-item{
+    margin-inline: 10px;
+}
+.social-item a{
+    font-size: 25px;
+    color: var(--primary-color);
+}
+.social-item a:hover{
+    color: var(--Dark-color);
+}
+.links-country .foot-items .foot-item .foot-link{
+    padding-left: 10px;
+}
+.foot-title-div{
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.siteMap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

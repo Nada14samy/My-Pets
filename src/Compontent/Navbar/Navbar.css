@@ -1,0 +1,19 @@
+@import "../../App.css";
+.navBrand{
+    font-size: 24px;
+    margin-top: 5px;
+    font-weight: var(--font-weight-normal);
+    letter-spacing: 2px;
+}
+.nav-link{
+    font-weight: var(--font-weight-normal);
+   font-size: 18px ;
+   color: var(--Dark-color) ;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+nav .container .btn{
+    background: var(--primary-color);
+}
