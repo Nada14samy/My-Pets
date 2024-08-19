@@ -1,3 +1,19 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+input,
+textarea {
+  border: 1px solid #7a7a7a;
+  border-radius: 5px;
+  padding: 6px;
+}
+
+input:focus,
+textarea:focus {
+  outline: transparent;
+}
+
+.error {
+  color: red;
+}
