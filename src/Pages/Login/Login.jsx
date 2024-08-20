@@ -52,7 +52,7 @@ export default function App() {
   }
 
   return (
-    <div className="mx-auto w-[450px] p-8 mt-8">
+    <div className="mx-auto w-[450px] px-8 py-4">
       <ToastContainer />
       <div className="flex justify-center mb-8">
         <div className="w-[280px] h-[314px] bg-primary rounded-[500px] relative">
