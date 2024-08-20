@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import Input from "../../Compontent/Input";
+import Input from "../../components/Input";
 import axios from "axios";
-import loginBackground from "../../image/login/login-background.png";
+import loginBackground from "../../images/login/login-background.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {Header , Footer} from "../../Section/index";
+import {Header , Footer} from "../../sections/index";
 const HomePage =()=>{
     return(
         <>

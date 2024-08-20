@@ -22,13 +22,13 @@ const AboutHomePage = () => {
                         <Col className="about-col" xs={12} md={6}>
                         <Row>
                             <Col md={4}>
-                            <img src={require("../../image/image 11.png")} alt="img" />
+                            <img src={require("../../images/image 11.png")} alt="img" />
                             </Col>
                             <Col md={4}>
-                            <img src={require("../../image/image 12.png")} alt="img" />
+                            <img src={require("../../images/image 12.png")} alt="img" />
                             </Col>
                             <Col md={4}>
-                            <img src={require("../../image/image 13.png")} alt="img" />
+                            <img src={require("../../images/image 13.png")} alt="img" />
                             </Col>
                         </Row>
                         </Col>
