@@ -15,5 +15,6 @@ a{
     cursor: pointer;
 }
 nav .container .btn{
+    height: fit-content;
     background: var(--primary-color);
 }

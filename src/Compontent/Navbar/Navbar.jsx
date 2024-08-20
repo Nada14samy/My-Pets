@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const NavbarBrand = () => {
@@ -16,16 +16,18 @@ const NavbarBrand = () => {
                     </li>
                     <li className="nav-item m-3">
                         <Link to="/find" className="nav-link">Find a pet</Link>
-                        </li>
+                    </li>
                     <li className="nav-item m-3">
                         <Link to="/about" className="nav-link">About Us</Link>
                     </li>
                 </ul>
-                <div className="btn flex justify-center items-center rounded-xl px-5 py-0">
-                    <Link to="/signup" className="text-white m-0 p-0">Sign Up</Link>
-                </div>
-                <div className="btn flex justify-center items-center rounded-xl px-5 py-0">
-                    <Link to="/login" className="text-white m-0 p-0">Log In</Link>
+                <div className="flex justfiy-center items-center">
+                    <div className="btn flex justify-center items-center rounded-2xl mx-1">
+                        <Link to="/signup" className="text-white py-1 px-4">Sign Up</Link>
+                    </div>
+                    <div className="btn flex justify-center items-center rounded-2xl mx-1">
+                        <Link to="/login" className="text-white py-1 px-4">Log In</Link>
+                    </div>
                 </div>
             </div>
         </nav>
