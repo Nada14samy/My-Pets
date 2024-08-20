@@ -37,9 +37,9 @@ export default function App({
       )}
       <div className="relative">
         <input
+          className="w-full"
           id={id}
           {...register(id)}
-          className="w-full"
           type={showPassword ? "text" : type}
           {...props}
         />
