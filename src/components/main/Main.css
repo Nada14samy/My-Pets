@@ -1,4 +1,4 @@
-@import "../../App.css";
+@import "../../index.scss";
 .main-text-title {
     font-size: 64px;
     font-weight: var(--font-weight-normal);
