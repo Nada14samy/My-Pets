@@ -1,9 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import { HomePage } from "./Pages/index";
-import { SignUp } from "./Section/index";
-import Login from "./Pages/Login/Login";
+import HomePage from "./pages/home/HomePage.jsx";
+import { SignUp } from "./sections/index";
+import Login from "./pages/login/Login";
 
-import "./App.css";
 const App = () => {
   return (
     <>

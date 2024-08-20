@@ -3,7 +3,7 @@
 .header {
     width: 100%;
     height: 380px;
-    background: var(--background-color) url("../../image/image\ 15.png");
+    background: var(--background-color) url("../../images/image\ 15.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

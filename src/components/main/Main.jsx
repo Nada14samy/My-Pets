@@ -11,7 +11,7 @@ const Main = () => {
         </h2>
       </div>
       <div className="main-img">
-        <img width={"90%"} src={require("../../image/image 9.png")} alt="img" />
+        <img width={"90%"} src={require("../../images/image 9.png")} alt="img" />
       </div>
     </div>
   );
