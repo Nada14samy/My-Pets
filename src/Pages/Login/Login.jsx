@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup
   .object({
-    email: yup.string().required().label("Email"),
+    email: yup.string().required().email().label("Email"),
     password: yup.string().required().label("Password"),
   })
   .required();
@@ -30,11 +30,13 @@ export default function App() {
         email,
         password,
       })
-      .then(() => {})
+      .then(() => {
+        toast.success("Login Success", {
+          autoClose: 2000,
+        });
+      })
       .catch((err) => {
         console.error(err.message);
-        console.log(err.response.data);
-
         toast.error(err.message, {
           autoClose: 2000,
         });
