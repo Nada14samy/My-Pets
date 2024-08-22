@@ -9,6 +9,7 @@ import axios from "axios";
 import loginBackground from "../../images/login/login-background.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -18,6 +19,7 @@ const schema = yup
   .required();
 
 export default function App() {
+  let navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -39,6 +41,11 @@ export default function App() {
         toast.success("Login Success", {
           autoClose: 2000,
         });
+      })
+      .then(() => {
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((err) => {
         console.error(err.message);
