@@ -41,8 +41,7 @@ export default function App() {
         toast.success("Login Success", {
           autoClose: 2000,
         });
-      })
-      .then(() => {
+
         setTimeout(() => {
           navigate("/");
         }, 2000);
