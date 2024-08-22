@@ -1,3 +1,11 @@
 import axios from "axios";
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+const defaultInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
+
+const forgetPasswordInstance = axios.create({
+  baseURL: process.env.REACT_APP_FORGET_PASSWORD_API_URL,
+});
+
+export { defaultInstance, forgetPasswordInstance };
