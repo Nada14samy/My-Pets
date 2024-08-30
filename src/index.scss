@@ -34,3 +34,14 @@ textarea:focus {
 .error {
   color: red;
 }
+.background{
+    background: url(images/background-image/bg.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.d-flex{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}

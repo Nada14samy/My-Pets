@@ -10,3 +10,9 @@
   background: var(--primary-color);
   border: none;
 }
+.signUp{
+    background: url("../../images/signup/signup-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
