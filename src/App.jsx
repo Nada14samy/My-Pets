@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./Pages/home/HomePage.jsx";
 import { SignUp } from "./sections/index";
-// import Login from "./Pages/Login/Login.jsx";
-import VerifyEmail from "./Pages/VerifyEmail/VerifyEmail.jsx";
+import Login from "./pages/login/Login";
+
 const App = () => {
   return (
     <>

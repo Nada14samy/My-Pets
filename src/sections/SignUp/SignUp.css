@@ -1,4 +1,4 @@
-@import "../../App.css";
+@import "../../index.scss";
 .contaner {
   width: 400px !important;
   height: fit-content;

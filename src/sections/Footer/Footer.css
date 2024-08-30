@@ -1,5 +1,7 @@
 @import "../../App.css";
-
+*{
+    box-sizing: border-box;
+}
 footer{
     background: var(--background-color);
 }
