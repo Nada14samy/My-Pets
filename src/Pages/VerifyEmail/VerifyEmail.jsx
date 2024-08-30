@@ -1,4 +1,5 @@
 import React , {useState} from "react";
+import Button from "../../components/generic/Button";
 import axios from "axios";
 const VerifyEmail=()=>{
     const[otp , setOtp]= useState("");
@@ -44,11 +45,9 @@ const VerifyEmail=()=>{
                     <form onSubmit={HandleSubmit} className="flex flex-col justify-center items-center w-full my-3">
                         <input type="number" placeholder="Verify Account..." id="otp" value={otp} className="w-full my-2 px-3 py-2" onChange={(e)=> setOtp(e.target.value)}/>
                         {otp.length === 6 && accept && (<p className="error text-sm">Otp must be then 6 char</p>)}
-                        <button className="w-full bg-primary rounded-md py-3 my-2 text-white" disabled={loading}>
-                            Verify Account
-                            {loading? "Verify Account..." : "Verify Account"}
-
-                            </button>
+                        <Button type="submit" isLoading={loading}>
+                            <span>Verify Account</span>
+                        </Button>
                         <p>{message}</p>
                     </form>
                     <div className="text-center">

@@ -7,7 +7,8 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./SignUp.css";
-
+import Button from "../../components/generic/Button";
+import { useState } from "react";
 const schema = yup.object({
   name: yup.string().required("Full Name is required"),
   email: yup.string().required("Email is required").email("Email is invalid"),
@@ -19,7 +20,8 @@ const SignUp = () => {
   const { register, handleSubmit, formState: { errors }, setError } = useForm({
     resolver: yupResolver(schema),
   });
-  
+  const[isLoading , setIsLoading]= useState(false);
+
   const onSubmit = async ({ name, email, password, rePassword }) => {
     try {
       await axios.post(
@@ -47,6 +49,9 @@ const SignUp = () => {
       } else {
         toast.error("Something went wrong, please try again later.", { autoClose: 2000 });
       }
+    }
+    finally{
+      setIsLoading(false);
     }
   };
 
@@ -98,12 +103,9 @@ const SignUp = () => {
           />
 
           <div className="flex justify-center w-full">
-            <button
-              className="bg-primary btn text-white w-full py-3 border-2 rounded-md"
-              type="submit"
-            >
-              Sign Up
-            </button>
+            <Button type="submit" isLoading={isLoading}>
+              <span>Sign Up</span>
+            </Button>
           </div>
         </form>
         <div className="flex flex-col justify-center items-center mt-2">
