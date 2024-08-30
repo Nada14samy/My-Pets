@@ -1,5 +1,6 @@
 import React from "react";
 import "./Main.css";
+import header from "../../images/header/header.png";
 
 const Main = () => {
   return (
@@ -11,7 +12,7 @@ const Main = () => {
         </h2>
       </div>
       <div className="main-img">
-        <img width={"90%"} src={require("../../images/image 9.png")} alt="img" />
+        <img width={"90%"} src={header} alt="img" />
       </div>
     </div>
   );

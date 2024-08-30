@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 const NavbarBrand = () => {
   return (
-    <nav className="nav w-full flex justify-center items-center h-fit p-4">
+    <nav className="nav w-full flex justify-center items-center h-fit p-4 ">
       <div className="container flex justify-between w-11/12">
         <div className="nav-brand">
           <h1 className="text-4xl">

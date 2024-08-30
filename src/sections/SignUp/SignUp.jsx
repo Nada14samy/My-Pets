@@ -1,178 +1,121 @@
-import React, { useState } from "react";
-import "./SignUp.css";
-import axios from "axios";
-import { NavbarBrand } from "../../components/index";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
+import * as yup from "yup";
+import Input from "../../components/Input";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "./SignUp.css";
+import Button from "../../components/generic/Button";
+import { useState } from "react";
+const schema = yup.object({
+  name: yup.string().required("Full Name is required"),
+  email: yup.string().required("Email is required").email("Email is invalid"),
+  password: yup.string().required("Password is required").min(8, "Password must be at least 8 characters"),
+  rePassword: yup.string().oneOf([yup.ref('password')], "Passwords must match").required("Repeat Password is required")
+}).required();
+
 const SignUp = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-  const [accept, setAccept] = useState(false);
-  const [errorMessageEmail, setErrorMessageEmail] = useState("");
-  const [errorMessageName, setErrorMessageName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  async function submit(e) {
-    let flag = true;
-    e.preventDefault();
-    setAccept(true);
-    setErrorMessageName("");
-    setErrorMessageEmail("");
-    setIsLoading(true);
-    // التحقق من inputs
-    if (name === "" || password.length < 8 || rePassword !== password) {
-      flag = false;
-    } else {
-      flag = true;
-    }
+  const { register, handleSubmit, formState: { errors }, setError } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const[isLoading , setIsLoading]= useState(false);
+
+  const onSubmit = async ({ name, email, password, rePassword }) => {
     try {
-      if (flag) {
-        // send data
-        await axios.post(
-          "https://farm-build-your-portfolio-project-2.onrender.com/api/v1/customers/signup",
-          {
-            name: name,
-            email: email,
-            password: password,
-            passwordConfirm: rePassword,
-          }
-        );
-        alert("done");
-      }
+      await axios.post(
+        "customers/signup",
+        {
+          name,
+          email,
+          password,
+          passwordConfirm: rePassword,
+        }
+      );
+      toast.success("Registration successful!", { autoClose: 2000 });
+      window.location.pathname = "/verifyEmail";
     } catch (err) {
-      // التحقق من وجود الايميل والاسم
+      console.log(err.response.data);
       if (err.response && err.response.status === 500) {
-        if (
-          err.response.data &&
-          err.response.data.includes("duplicate key error")
-        ) {
+        if (err) {
           if (err.response.data.includes("index: email_1")) {
-            setErrorMessageEmail(
-              "This email is already registered. Please use a different email."
-            );
-          } else {
-            setErrorMessageEmail("");
+            setError("email", { message: "This email is already registered. Please use a different email." });
           }
           if (err.response.data.includes("index: name_1")) {
-            setErrorMessageName(
-              "This name is already taken. Please choose a different name."
-            );
-          } else {
-            setErrorMessageName("");
+            setError("name", { message: "This name is already taken. Please choose a different name." });
           }
         }
+      } else {
+        toast.error("Something went wrong, please try again later.", { autoClose: 2000 });
       }
-    } finally {
+    }
+    finally{
       setIsLoading(false);
     }
-  }
+  };
+
   return (
-    <>
-      <div className="signUp w-full h-screen flex flex-col  items-center">
-        <NavbarBrand />
-        <div className="contaner flex flex-col">
-          <form
-            className="flex flex-col justify-center w-3/4"
-            onSubmit={submit}
-          >
-            <div className="mb-6 flex flex-col w-full">
-              <label htmlFor="name" className="font-semibold">
-                Full Name:{" "}
-              </label>
-              <input
-                className="border-2 rounded-md py-2 px-3"
-                type="text"
-                placeholder="Name..."
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-              {name === "" && accept && (
-                <p style={{ color: "red" }} className="text-lg">
-                  Username is required
-                </p>
-              )}
-              {errorMessageName && (
-                <p style={{ color: "red" }} className="text-lg">
-                  {errorMessageName}
-                </p>
-              )}
-            </div>
-            <div className="mb-6 flex flex-col w-full">
-              <label htmlFor="email" className="font-semibold">
-                Email:{" "}
-              </label>
-              <input
-                className="border-2 rounded-md py-2 px-3"
-                type="email"
-                placeholder="email..."
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              {errorMessageEmail && (
-                <p style={{ color: "red" }} className="text-lg">
-                  {errorMessageEmail}
-                </p>
-              )}
-            </div>
-            <div className="mb-6 flex flex-col w-full">
-              <label htmlFor="password" className="font-semibold">
-                Password:{" "}
-              </label>
-              <input
-                className="border-2 rounded-md py-2 px-3"
-                type="password"
-                id="password"
-                placeholder="Password..."
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {password.length < 8 && accept && (
-                <p style={{ color: "red" }} className="text-lg">
-                  password must be more then 8 char
-                </p>
-              )}
-            </div>
-            <div className="mb-6 flex flex-col w-full">
-              <label htmlFor="rePassword" className="font-semibold">
-                {" "}
-                Repeat Password:{" "}
-              </label>
-              <input
-                className="border-2 rounded-md py-2 px-3"
-                type="password"
-                id="rePassword"
-                placeholder="Repeat Password..."
-                value={rePassword}
-                onChange={(e) => setRePassword(e.target.value)}
-              />
-              {rePassword !== password && accept && (
-                <p style={{ color: "red" }} className="text-lg">
-                  password dose not match
-                </p>
-              )}
-            </div>
-            <div className="flex justify-center  w-full">
-              <button
-                className="btn text-white w-full py-3 border-2 rounded-md"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? "Signing Up..." : "Sign Up"}
-              </button>
-            </div>
-          </form>
-          <div className="flex flex-col justify-center items-center mt-2">
-            <p className="text-lg">Sign Up Already have an account ?</p>
-            <Link href="/" className="font-semibold text-xl text-black">
-              Log in
-            </Link>
+    <div className="signUp w-full h-screen flex flex-col items-center justify-center">
+      <ToastContainer />
+      <div className="container flex flex-col justify-center items-center w-11/12 h-screen">
+        <div className="w-1/3 my-3 flex justify-center items-center">
+        <h3 className="text-3xl">Sign Up</h3>
+        </div>
+        <form
+          className="flex flex-col justify-center w-1/3"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <Input
+            id="name"
+            label="Full Name"
+            register={register}
+            errors={errors}
+            placeholder="Name..."
+            
+          />
+          <Input
+            id="email"
+            label="Email"
+            register={register}
+            errors={errors}
+            placeholder="Email..."
+            type="email"
+        
+          />
+          <Input
+            id="password"
+            label="Password"
+            register={register}
+            errors={errors}
+            placeholder="Password..."
+            type="password"
+           
+          />
+          <Input
+            id="rePassword"
+            label="Repeat Password"
+            register={register}
+            errors={errors}
+            placeholder="Repeat Password..."
+            type="password"
+           
+          />
+
+          <div className="flex justify-center w-full">
+            <Button type="submit" isLoading={isLoading}>
+              <span>Sign Up</span>
+            </Button>
           </div>
+        </form>
+        <div className="flex flex-col justify-center items-center mt-2">
+          <p className="text-lg">Already have an account?</p>
+          <Link to="/" className="font-semibold text-xl text-black">
+            Log in
+          </Link>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default SignUp;
