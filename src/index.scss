@@ -12,16 +12,6 @@ $font-family-Roboto: "Roboto", sans-serif;
 $font-family-MontaguSlab: "Montagu Slab", serif;
 $background-color: #ffd79a9c;
 
-:root {
-  --primary-color: #73b9d7;
-  --Dark-color: #000;
-  --Light-color: #fff;
-  --font-weight-normal: 500;
-  --font-family-Roboto: "Roboto", sans-serif;
-  --font-family-MontaguSlab: "Montagu Slab", serif;
-  --background-color: #ffd79a9c;
-}
-
 body {
   font-family: $font-family-Roboto;
   font-optical-sizing: auto;
@@ -70,9 +60,4 @@ textarea:focus {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-}
-.d-flex{
-  display: flex;
-  justify-content: center;
-  align-content: center;
 }

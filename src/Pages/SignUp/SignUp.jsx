@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import * as yup from "yup";
-import Input from "../../components/Input";
+import Input from "../../components/generic/Input";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./SignUp.css";
 import Button from "../../components/generic/Button";
 import { useState } from "react";
+import bg_image from "../../images/signup/signup-bg.png";
+
 const schema = yup.object({
   name: yup.string().required("Full Name is required"),
   email: yup.string().required("Email is required").email("Email is invalid"),
@@ -17,6 +18,7 @@ const schema = yup.object({
 }).required();
 
 const SignUp = () => {
+  let navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, setError } = useForm({
     resolver: yupResolver(schema),
   });
@@ -34,16 +36,14 @@ const SignUp = () => {
         }
       );
       toast.success("Registration successful!", { autoClose: 2000 });
-      window.location.pathname = "/verifyEmail";
+      setTimeout(() => {
+        navigate("/verifyEmail");
+      }, 2000);
     } catch (err) {
-      console.log(err.response.data);
-      if (err.response && err.response.status === 500) {
+      if (err.response && err.response.data.error.statusCode === 500) {
         if (err) {
-          if (err.response.data.includes("index: email_1")) {
+          if (err.response.data.message === "token is not defined") {
             setError("email", { message: "This email is already registered. Please use a different email." });
-          }
-          if (err.response.data.includes("index: name_1")) {
-            setError("name", { message: "This name is already taken. Please choose a different name." });
           }
         }
       } else {
@@ -56,14 +56,14 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signUp w-full h-screen flex flex-col items-center justify-center">
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat" style={{backgroundImage: `url(${bg_image})`}}>
       <ToastContainer />
-      <div className="container flex flex-col justify-center items-center w-11/12 h-screen">
-        <div className="w-1/3 my-3 flex justify-center items-center">
-        <h3 className="text-3xl">Sign Up</h3>
+      <div className="container flex flex-col justify-center items-center h-fit shadow-2xl py-10 w-[500px]">
+        <div className="w-10/12 mb-8 flex justify-center items-center">
+          <h3 className="text-3xl">Sign Up</h3>
         </div>
         <form
-          className="flex flex-col justify-center w-1/3"
+          className="flex flex-col justify-center w-10/12"
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input

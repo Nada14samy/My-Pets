@@ -59,7 +59,7 @@ export default function App({
         )}
       </div>
 
-      <p className="error">{errors[id]?.message}</p>
+      <p className="error text-sm">{errors[id]?.message}</p>
     </div>
   );
 }
