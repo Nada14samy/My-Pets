@@ -8,12 +8,14 @@ module.exports = {
       darkBlue: "#295793",
       lightYellow: "#ffd79a9c",
       secondary: "#F6E5C9",
+      darkGray: "#6a6a6a",
+      danger: "#ff0000",
     },
-    fontFamily:{
+    fontFamily: {
       roboto: ["Roboto", "sans-serif"],
-      montaguSlab: ["Montagu Slab","serif"],
+      montaguSlab: ["Montagu Slab", "serif"],
       sansitaSwashed: ["Sansita Swashed"],
-    }
+    },
   },
   plugins: [],
 };
