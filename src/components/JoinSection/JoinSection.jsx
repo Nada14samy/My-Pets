@@ -10,9 +10,9 @@ const JoinSection = () => {
     }, []);
     return (
         <>
-            <section className="w-full my-12 join h-fit d-flex">
-                <div className="container w-10/12 m-auto flex">
-                    <div className="w-1/2">
+            <section className="w-full my-12 join h-fit">
+                <div className="container w-10/12 max-[1024px]:block m-auto flex">
+                    <div className="w-1/2  max-[1024px]:w-full">
                         <div className="title">
                             <h3 className="text-4xl font-medium mb-10" data-aos="fade-right">join our community</h3>
                             <div className="mt-10" data-aos="fade-left" data-aos-duration="3000">
@@ -41,7 +41,7 @@ const JoinSection = () => {
                             <Link to="/">join our community</Link>
                         </button>
                     </div>
-                    <div className="img-sec w-1/2 bg-top bg-contain bg-no-repeat" style={{backgroundImage: `url(${bg_join})`}} data-aos="zoom-in" data-aos-duration="3000">
+                    <div className="img-sec w-1/2 max-[1024px]:w-full max-[1024px]:m-auto bg-top bg-contain bg-no-repeat" style={{backgroundImage: `url(${bg_join})`}} data-aos="zoom-in" data-aos-duration="3000">
                         <img src={image_21} alt="" className="mt-12 py-10" />
                     </div>
                 </div>
