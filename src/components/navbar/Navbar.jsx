@@ -16,7 +16,7 @@ const NavbarBrand = () => {
             </Link>
           </li>
           <li className="nav-item m-3">
-            <Link to="/find" className="nav-link text-black font-medium text-lg">
+            <Link to="/find-a-pet" className="nav-link text-black font-medium text-lg">
               Find a pet
             </Link>
           </li>
