@@ -4,8 +4,9 @@ import bg_sections from "../../images/section-cards/bg-section.png";
 import Card from "../Card/Card";
 import Loading from "../Loading/Loading";
 import axios from "axios";
-
-
+import ErrorSection from "../error/ErrorSection";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SectionCards = (props)=>{
     const [cards , setCards] = useState([]);
     const[isLoading , setIsLoading]= useState(true);
@@ -35,18 +36,12 @@ const SectionCards = (props)=>{
             try {
                 const response = await axios.get(`${endPoint}`);
                 setCards(response.data.data.data);
-                console.log(response.data.data.data)
             }catch(err){
-                if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response.status);
-                    console.log(err.response.headers);
-                } else if (err.request) {
-                    console.log(err.request);
-                } else {
-                    console.log('error', err.message);
+                if(err.message === "Network Error"){
+                    toast.error("Oops! Something went wrong. please refresh the page.", { autoClose: 2000 });
+                }else{
+                    <ErrorSection title="Sorry, data is not available now. please try again later" />
                 }
-                console.log(err.config);
             }
             finally{
                 setIsLoading(false);
@@ -58,10 +53,11 @@ const SectionCards = (props)=>{
     return(
         <>
             <section className="component w-full my-14 mx-0 h-fit">
+            <ToastContainer />
                 <div className="container w-[91%] m-auto flex justify-center flex-col overflow-x-hidden">
                         <div className="title-head h-[90px] flex justify-start items-center bg-contain bg-left bg-no-repeat mx-3" style={{backgroundImage: `url(${bg_sections})`}}>
                             <img className="w-14" src={props.logo} alt="" />
-                            <h3 className="text-3xl ml-2">{props.type}s</h3>
+                            <h3 className="text-3xl ml-2">{props.type === "New"? props.type:`${props.type}s`}</h3>
                         </div>
                     <div className="cards h-fit mt-14 mb-10 flex items-center">
                         {isLoading?(
