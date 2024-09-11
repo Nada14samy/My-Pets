@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
-import Input from "../../components/Input";
+import Input from "../../components/generic/Input";
+import Button from "../../components/generic/Button";
 import axios from "axios";
 import loginBackground from "../../images/login/login-background.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -16,6 +19,7 @@ const schema = yup
   .required();
 
 export default function App() {
+  let navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -24,7 +28,10 @@ export default function App() {
     resolver: yupResolver(schema),
   });
 
-  function onSubmit({ email, password }) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  function onSubmitHandler({ email, password }) {
+    setIsLoading(true);
     axios
       .post("customers/login", {
         email,
@@ -34,29 +41,36 @@ export default function App() {
         toast.success("Login Success", {
           autoClose: 2000,
         });
+
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
       .catch((err) => {
         console.error(err.message);
         toast.error(err.message, {
           autoClose: 2000,
         });
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   return (
-    <div className="mx-auto w-[450px] p-8 mt-8">
+    <div className="mx-auto w-[450px] px-8 py-4">
       <ToastContainer />
       <div className="flex justify-center mb-8">
         <div className="w-[280px] h-[314px] bg-primary rounded-[500px] relative">
           <img
             src={loginBackground}
-            alt=""
+            alt="login-background"
             className="absolute bottom-1 right-10"
           />
         </div>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmitHandler)}>
         <Input
           id="email"
           label="Email"
@@ -64,6 +78,7 @@ export default function App() {
           errors={errors}
           placeholder="johndoe@example.com"
         />
+
         <Input
           id="password"
           label="Password"
@@ -90,18 +105,16 @@ export default function App() {
             errors={errors}
             className="mr-2"
           />
+
           <label htmlFor="rememberMe" className="cursor-pointer font-semibold">
             Remember me
           </label>
         </div>
 
         <div className="flex justify-center">
-          <button
-            type="submit"
-            className="bg-primary px-8 py-1 rounded text-white w-80"
-          >
-            Login
-          </button>
+          <Button type="submit" isLoading={isLoading}>
+            <span> Login </span>
+          </Button>
         </div>
 
         <div className="flex flex-col items-center mt-8">
