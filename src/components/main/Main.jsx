@@ -1,7 +1,6 @@
 import React ,{useEffect} from "react";
-import "./Main.scss";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; //import aos styles
+import 'aos/dist/aos.css'; 
 import header from "../../images/header/header.png";
 
 const Main = () => {

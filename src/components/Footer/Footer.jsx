@@ -15,15 +15,15 @@ const Footer = () => {
   return (
     <>
       <footer className="h-fit py-10 flex justify-center items-center bg-lightYellow">
-        <div className="container w-10/12 m-auto my-10 flex justify-between">
-          <div className="logo w-[30%]">
+        <div className="container w-10/12 m-auto my-10 flex max-[591px]:flex-col justify-between flex-wrap">
+          <div className="logo w-[30%] max-[591px]:w-[100%] max-[591px]:mb-5">
             <h5 className="text-3xl mb-6">
               <Link to="/">My Pets</Link>
             </h5>
             <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nemo eveniet est quia praesentium alias ea
               recusandae aut placeat quasi, minima repudiandae ipsam dolor? Iure.</p>
           </div>
-          <div>
+          <div className="max-[591px]:mb-5">
             <h5 className="mb-6 font-bold">Site Map </h5>
             <p className="mb-2">
               <Link to="/">Home</Link>
@@ -38,7 +38,7 @@ const Footer = () => {
               <Link to="/">How We Work</Link>
             </p>
           </div>
-          <div>
+          <div className="max-[591px]:mb-5">
             <h5 className="mb-6 font-bold">Help</h5>
             <p className="mb-2">
               <Link to="/">Privacy Policy</Link>
@@ -56,7 +56,7 @@ const Footer = () => {
               <Link to="/">Contact Us</Link>
             </p>
           </div>
-          <div>
+          <div className="max-[591px]:mb-5">
             <div>
               <h5 className="mb-6 font-bold">Our Contact</h5>
               <p className="mb-2 flex">

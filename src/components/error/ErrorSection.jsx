@@ -1,12 +1,13 @@
 import React from "react";
 import "./ErrorSection.scss";
 
-const ErrorSection = () => {
+const ErrorSection = (props) => {
     return (
-        <>
-            <div className="loader">
-                <div className="wrapper">
-                    <div className="catContainer">
+        <div className="w-full h-fit flex flex-col justify-center items-center">
+            <p className="mb-3">{props.title}</p>
+            <div className="loaderCat">
+                <div className="wrapperCat">
+                    <div className="cat-Container">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
@@ -169,7 +170,7 @@ const ErrorSection = () => {
                 </div>
             </div>
 
-        </>
+        </div>
     )
 }
 export default ErrorSection;
